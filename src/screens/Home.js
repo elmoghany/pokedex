@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import BoxGrid from '../components/BoxGrid';
 
 const HomeScreen = () => {
     const insets = useSafeAreaInsets();
@@ -17,15 +18,7 @@ const HomeScreen = () => {
             </View>
 
             {/* grid of pokemons */}
-            <View title='grid' style={styles.gridStyle}>
-                <View title='box' style={styles.boxStyle}>
-                    <Text>   inside box</Text>
-                </View>
-                <View title='box' style={styles.boxStyle}>
-                    <Text>   inside box</Text>
-                </View>
-                {/* to be converted into a component for reuse */}
-            </View>
+            <BoxGrid />
         </>
 )
 }
@@ -36,19 +29,6 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontWeight: 'bold',
         margin: 18,  
-    },
-    gridStyle:{
-        backgroundColor: 'grey',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        margin: 18,
-
-    },
-    boxStyle:{
-        backgroundColor: 'purple',
-        width: 160,
-        height: 150,
-        borderRadius: 20,
     },
 })
 
