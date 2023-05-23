@@ -1,48 +1,73 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "../api/axios";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { useNameURL } from "../hooks";
+import { useID } from "../hooks";
 import Box from "./Box";
 
+
+
 const BoxGrid = () => {
-    const [name, setName] = useState([]);
 
-    const getNameResult = async () => {
-        try{
-            const resp = await axios.get('/pokemon')
-            if (!resp.data) {
-                throw new Error('Something went wrong');
-            }
-            else {
-                setName(resp.data.results)
-            }
-        } catch (err) {
-            console.log('Error: ', err.message);
-        }
-    }
+    ///////////////////////////////////
+    /// GET NAMES & URL OF POKEMONS ///
+    ///////////////////////////////////
 
-    useEffect (() => {
-        getNameResult();
-    }, [])
-
+    const nameURL = useNameURL();   
     useEffect(() => {
-        console.log("getNameResult: ", name);
-    }, [name])
+        if (nameURL.length > 0) {
+            nameURL.map(item => console.log("URL: ", item.url));
+        } else {
+            console.log("nameURL is empty");
+        }
+    }, [nameURL]);
+    
+    ///////////////////////////////////
+    ///     GET IDs of POKEMONS     ///
+    ///////////////////////////////////
 
+    const ID = useID({nameURL});
+    useEffect(() => {
+        if (ID.length > 0) {
+            ID.map(item => console.log("ID: ", item));
+        } else {
+            console.log("ID is empty");
+        }
+    }, []);
+
+
+    ///////////////////////////////////
+    /// GET TYPES  OF  POKEMONS     ///
+    ///////////////////////////////////
+
+
+    ///////////////////////////////////
+    ///   data     is     fecteched ///
+    ///////////////////////////////////
+
+
+    // useEffect(() => {
+    // if (nameURL.length > 0 && ID.length > 0 && !dataFetched) {
+    //     createPokemonObjects();
+    //     setDataFetched(true); // Update the dataFetched state variable
+    // }
+    // }, [nameURL, ID, dataFetched]);
 
     return (
         <>
             <ScrollView>
                 <View title='grid' style={styles.gridStyle}>
-                    {
-                        name.map( (item) => {
+                    {/* {
+                        pokemon.map( (item) => {
                             console.log(item)
                             return(
-                                <Box key={item.name} name={item.name}/>
+                                <Box key={item.name} name={item.name} url={item.url}/>
                             )
                         })
-                    }
+                    } */}
+                    <Box>test</Box>
+                    <Box>test</Box>
                 </View>
             </ScrollView>
         </>
