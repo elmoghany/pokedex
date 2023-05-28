@@ -4,6 +4,9 @@ import { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useNameURL } from "../hooks";
 import { useID } from "../hooks";
+import { useTypes } from "../hooks";
+import { usePicture } from "../hooks";
+import { useBGColor } from "../hooks";
 import Box from "./Box";
 
 
@@ -15,31 +18,67 @@ const BoxGrid = () => {
     ///////////////////////////////////
 
     const nameURL = useNameURL();   
-    useEffect(() => {
-        if (nameURL.length > 0) {
-            nameURL.map(item => console.log("URL: ", item.url));
-        } else {
-            console.log("nameURL is empty");
-        }
-    }, [nameURL]);
+    // useEffect(() => {
+    //     if (nameURL.length > 0) {
+    //         nameURL.map(item => console.log("URL: ", item.url));
+    //     } else {
+    //         console.log("nameURL is empty");
+    //     }
+    // }, [nameURL]);
     
     ///////////////////////////////////
     ///     GET IDs of POKEMONS     ///
     ///////////////////////////////////
 
     const ID = useID({nameURL});
-    useEffect(() => {
-        if (ID.length > 0) {
-            ID.map(item => console.log("ID: ", item));
-        } else {
-            console.log("ID is empty");
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (ID.length > 0) {
+    //         ID.map(item => console.log("ID: ", item));
+    //     } else {
+    //         console.log("ID is empty");
+    //     }
+    // }, [ID]);
 
 
     ///////////////////////////////////
     /// GET TYPES  OF  POKEMONS     ///
     ///////////////////////////////////
+
+    const types = useTypes({nameURL});
+    // useEffect(() => {
+    //     if (types.length > 0) {
+    //         types.map(item => console.log("------types------: ", item));
+    //     } else {
+    //         console.log("types is empty");
+    //     }
+    // }, [types]);
+
+
+    ///////////////////////////////////
+    ///        GET Pictures         ///
+    ///////////////////////////////////
+
+    const picture = usePicture({nameURL});
+    // useEffect(() => {
+    //     if (picture.length > 0) {
+    //         picture.map(item => console.log("------Picture------: ", item));
+    //     } else {
+    //         console.log("Picture is empty");
+    //     }
+    // }, [picture]);
+
+    ///////////////////////////////////
+    ///        GET bg color         ///
+    ///////////////////////////////////
+
+    const bgColor = useBGColor({nameURL});
+    // useEffect(() => {
+    //     if (picture.length > 0) {
+    //         picture.map(item => console.log("------Picture------: ", item));
+    //     } else {
+    //         console.log("Picture is empty");
+    //     }
+    // }, [picture]);
 
 
     ///////////////////////////////////

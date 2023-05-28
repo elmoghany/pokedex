@@ -22,9 +22,9 @@ const useNameURL = () => {
         fetchData();
     }, [])
 
-    useEffect(() => {
-        console.log("getNameUrlResult1: ", nameURL);
-    }, [nameURL])
+    // useEffect(() => {
+    //     console.log("getNameUrlResult1: ", nameURL);
+    // }, [nameURL])
 
     return nameURL
 
